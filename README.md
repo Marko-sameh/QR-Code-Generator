@@ -11,7 +11,7 @@ A simple, elegant web-based QR code generator that allows users to create and do
 
 ## Demo
 
-(https://marko-sameh.github.io/QR-Code-Generator/)
+https://marko-sameh.github.io/QR-Code-Generator/
 
 ## Getting Started
 
