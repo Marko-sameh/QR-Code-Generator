@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>QR Code Generator</h1>
+      <input type="text" id="url" placeholder="Enter a link here" />
+      <button onclick="generateQR()">Generate QR</button>
+      <button onclick="downloadQR()">Download QR</button>
+      <canvas id="qrcode"></canvas>
+    </div>
+
+    <script>
+      function generateQR() {
+        const url = document.getElementById("url").value.trim();
+        const canvas = document.getElementById("qrcode");
+
+        if (!url) {
+          alert("Please enter a valid link.");
+          return;
+        }
+
+        QRCode.toCanvas(
+          canvas,
+          url,
+          {
+            width: 200,
+            color: {
+              dark: "#000000",
+              light: "#ffffff",
+            },
+          },
+          function (error) {
+            if (error) console.error(error);
+          }
+        );
+      }
+
+      function downloadQR() {
+        const canvas = document.getElementById("qrcode");
+        const url = canvas.toDataURL("image/png");
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "qr-code.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    </script>
+  </body>
+</html>
